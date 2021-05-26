@@ -45,7 +45,7 @@ See [QuickFeather programming and debugging](https://docs.zephyrproject.org/late
 ## Sample output
 Once the board is programmed, the LED should alternately flash red and green.
 
-# Example 1: programming the FPGA using the Zephyr shell
+# Example 2: programming the FPGA using the Zephyr shell
 This sample demonstrates how to use the FPGA driver API along with the Serial loader subsystem in Zephyr Shell.
 Currently the sample works with [Quicklogic Quickfeather board](https://github.com/QuickLogic-Corp/quick-feather-dev-board).
  ## Requirements
