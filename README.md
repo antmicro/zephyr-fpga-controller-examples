@@ -42,13 +42,18 @@ west build -b quick_feather samples/drivers/fpga/fpga_loader
 ## Running
 See [QuickFeather programming and debugging](https://docs.zephyrproject.org/latest/boards/arm/quick_feather/doc/index.html#programming-and-debugging) for instructions on how to load an image to the board.
 
-## Sample output
+## Expected behaviour
 Once the board is programmed, the LED should alternately flash red and green.
+Note that the blinking is not controlled by software, there are two bistreams, one lights up the red LED, the other one lights up the green LED.
+The bitstream are continusly changed in a loop to demonstrate dynamic FPGA reprogramming from Zephyr.
+
+![unnamed](https://user-images.githubusercontent.com/8438531/119640404-dcedda00-be18-11eb-8a16-49004a82d76f.gif)
 
 # Example 2: programming the FPGA using the Zephyr shell
 This sample demonstrates how to use the FPGA driver API along with the Serial loader subsystem in Zephyr Shell.
 Currently the sample works with [Quicklogic Quickfeather board](https://github.com/QuickLogic-Corp/quick-feather-dev-board).
- ## Requirements
+
+## Requirements
 * Zephyr RTOS with shell subsystem enabled
 * [QuickLogic QuickFeather board](https://github.com/QuickLogic-Corp/quick-feather-dev-board)
 
