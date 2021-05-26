@@ -18,10 +18,12 @@ Serial loader is a sub-system to the Zephyr shell that allows you to easily load
 It can also be used to load other things into the device memory as it supports loading any amount of data from the keyboard or by sending it to the appropriate /dev/tty.
 
 ## Usage
-To take advantage of the FPGA loader's functionality, make a fork of the quickfeather-fpga-loader branch. You can find it [here](https://github.com/antmicro/zephyr/tree/quickfeather-fpga-loader).
+The FPGA subsystem for Zephyr is in the process of mainlining, for now use our fork of Zephyr.
+You can find the fork containing all the relevant changes [here](https://github.com/antmicro/zephyr/tree/quickfeather-fpga-loader).
 
-# Usage example with driver
-This example demonstrates how to use the FPGA driver API. Currently, the sample works with the [QuickLogic QuickFeather board](https://github.com/QuickLogic-Corp/quick-feather-dev-board).
+# Example 1: programming the FPGA from C code
+This example demonstrates how to use the FPGA driver API.
+Currently, the sample works with the [QuickLogic QuickFeather board](https://github.com/QuickLogic-Corp/quick-feather-dev-board).
 
 ## Requirements
 * Zephyr RTOS
@@ -43,7 +45,7 @@ See [QuickFeather programming and debugging](https://docs.zephyrproject.org/late
 ## Sample output
 Once the board is programmed, the LED should alternately flash red and green.
 
-# Sample of usage with serial loader in shell
+# Example 1: programming the FPGA using the Zephyr shell
 This sample demonstrates how to use the FPGA driver API along with the Serial loader subsystem in Zephyr Shell.
 Currently the sample works with [Quicklogic Quickfeather board](https://github.com/QuickLogic-Corp/quick-feather-dev-board).
  ## Requirements
