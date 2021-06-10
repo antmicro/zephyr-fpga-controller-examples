@@ -29,8 +29,8 @@ Serial loader is a new Zephyr shell command that allows users to easily load arb
 In this case it is used to load bitstream files, which can then be used in combination with the new ``fpga`` command to reprogram the FPGA chip.
 
 ## Usage
-The FPGA subsystem for Zephyr is in the process of mainlining, for now use our fork of Zephyr.
-You can find the fork containing all the relevant changes [here](https://github.com/antmicro/zephyr/tree/quickfeather-fpga-loader).
+
+The FPGA subsystem for Zephyr is in the process of mainlining, for now use [the relevant branch of our fork of Zephyr](https://github.com/antmicro/zephyr/tree/quickfeather-fpga-loader).
 
 # Example 1: programming the FPGA from C code
 This example demonstrates how to use the FPGA driver API.
