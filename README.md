@@ -6,7 +6,7 @@ This README describes new FPGA-related subsystems which allow users to control F
 
 The main part is the FPGA controller itself.
 It is a completely new Zephyr subsystem developed to enable communication between Zephyr and FPGAs.
-The subsystem is described in more detail in the following chapters.
+The subsystem is described in more detail in the following sections.
 
 In addition to that, a serial loader command has been added to Zephyr.
 It allows users to load arbitrary data to the memory of a board running Zephyr over the serial interface.
