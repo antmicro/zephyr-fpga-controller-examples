@@ -75,7 +75,7 @@ One bitstream replaces the other in a continuous loop to demonstrate dynamic FPG
 # Example 2: programming the FPGA using the Zephyr shell
 
 This sample demonstrates how to use the FPGA driver API along with the Serial loader subsystem in Zephyr Shell.
-Currently, the sample works with [Quicklogic Quickfeather board](https://github.com/QuickLogic-Corp/quick-feather-dev-board).
+Currently, the sample works with [QuickLogic QuickFeather board](https://github.com/QuickLogic-Corp/quick-feather-dev-board).
 
 ## Requirements
 
