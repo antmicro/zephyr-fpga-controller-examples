@@ -14,7 +14,7 @@ It ties well with the FPGA subsystem - as described below, it can be used to eas
 
 ## The FPGA controller
 
-FPGA controller has been created to:
+The FPGA controller has been created to:
 * have control over the FPGA from Zephyr
 * enable bitstream loading into the FPGA
 
@@ -25,7 +25,7 @@ The work on the controller consisted of several parts:
 
 ## The serial loader
 
-Serial loader is a new Zephyr shell command that allows users to easily load arbitrary data into the device memory.
+The serial loader is a new Zephyr shell command that allows users to easily load arbitrary data into the device memory.
 In this case it is used to load bitstream files, which can then be used in combination with the new ``fpga`` command to reprogram the FPGA chip.
 
 ## Usage
@@ -75,11 +75,11 @@ One bitstream replaces the other in a continuous loop to demonstrate dynamic FPG
 # Example 2: programming the FPGA using the Zephyr shell
 
 This sample demonstrates how to use the FPGA driver API along with the Serial loader subsystem in Zephyr Shell.
-Currently, the sample works with [QuickLogic QuickFeather board](https://github.com/QuickLogic-Corp/quick-feather-dev-board).
+Currently, the sample works with the [QuickLogic QuickFeather board](https://github.com/QuickLogic-Corp/quick-feather-dev-board).
 
 ## Requirements
 
-* Zephyr RTOS with shell subsystem enabled
+* Zephyr RTOS with the shell subsystem enabled
 * [QuickLogic QuickFeather board](https://github.com/QuickLogic-Corp/quick-feather-dev-board)
 
 ## Cloning the repository and building
@@ -94,6 +94,7 @@ west build -b quick_feather samples/drivers/fpga/fpga_loader_shell
 See [QuickFeather programming and debugging](https://docs.zephyrproject.org/latest/boards/arm/quick_feather/doc/index.html#programming-and-debugging) for instructions on how to load an image to the board.
 
 ## Running
+
 After connecting to the UART console you should see the following output:
 
 ```bash
@@ -133,7 +134,7 @@ You can either type it directly from the console or send it from the host PC (re
 ```bash
 xxd -p data > /dev/ttyX
 ```
-(It is important to use plain-style hex dump)
+(It is important to use a plain-style hex dump)
 Once the data is transferred, use `ctrl+d` to quit the loader.
 It will print the sum of the read bytes and return to the shell:
 ```bash
