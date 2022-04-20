@@ -63,25 +63,26 @@ One bitstream replaces the other in a continuous loop to demonstrate dynamic FPG
 This example demonstrates how to use the FPGA driver API.
 The described sample works with the [Antmicro's Mercury XU port](https://github.com/zephyrproject-rtos/zephyr/tree/main/boards/arm/mercury_xu)
 
-## Cloning the repository and building
+
+
+## Initialization
 
 Please refer to Zephyr's official [getting started guide](https://docs.zephyrproject.org/latest/getting_started/index.html) for detailed setup instructions.
 
-Assuming the SDK and ``west`` are set up correctly, run the following commands to get the correct sources:
+The first step is to initialize the workspace folder (``workspace``) where
+the app and all Zephyr modules will be cloned. You can do
+that by running:
 ```
-mkdir zephyrproject
-git clone --single-branch --branch zynqmp-fpga-controller-with-sample https://github.com/antmicro/zephyr zephyrproject/zephyr
-cd zephyrproject/zephyr
-west init -l
-cd ..
+west init -m https://github.com/antmicro/zephyr-fpga-controller-examples --mr master workspace
+cd workspace
 west update
 ```
 
 Then, build the sample for the `mercury_xu` board:
 
 ```bash
-cd zephyr
-west build -b mercury_xu samples/drivers/fpga/fpga_loader/mercury_xu/
+cd zephyr-fpga-controller-examples
+west build -b mercury_xu app/
 ```
 
 ## Running
