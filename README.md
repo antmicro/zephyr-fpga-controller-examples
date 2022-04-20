@@ -93,7 +93,7 @@ Once the board is programmed, the LED should blink.
 Note that the blinking is not controlled by software. There are two bitstreams: one blinks slower than the other one.
 One bitstream replaces the other in a continuous loop to demonstrate dynamic FPGA reprogramming from Zephyr.
 
-![Bitstream reprogramming demonstration mercury_xu](https://user-images.githubusercontent.com/56843331/163998244-91637928-b518-4e16-89cc-08bbfd5d51fe.gif)
+![Bitstream reprogramming demonstration mercury_xu](https://user-images.githubusercontent.com/56843331/164222142-acc51789-bf13-49c6-aeb8-10b6a553107d.gif)
 
 # Example 3: programming the FPGA using the Zephyr shell
 
