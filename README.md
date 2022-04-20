@@ -1,12 +1,12 @@
 # Zephyr FPGA controller
 
-Copyright (c) 2021 [Antmicro](https://antmicro.com).
+Copyright (c) 2021-2022 [Antmicro](https://antmicro.com).
 
 This README describes new FPGA-related subsystems which allow users to control FPGA chips using the Zephyr real-time operating system.
 
 The main part is the FPGA controller itself.
 It is a completely new Zephyr subsystem developed to enable communication between Zephyr and FPGAs.
-The subsystem is described in more detail in the following chapters.
+The subsystem is described in more detail in the following sections.
 
 In addition to that, a serial loader command has been added to Zephyr.
 It allows users to load arbitrary data to the memory of a board running Zephyr over the serial interface.
@@ -14,7 +14,7 @@ It ties well with the FPGA subsystem - as described below, it can be used to eas
 
 ## The FPGA controller
 
-FPGA controller has been created to:
+The FPGA controller has been created to:
 * have control over the FPGA from Zephyr
 * enable bitstream loading into the FPGA
 
@@ -25,40 +25,27 @@ The work on the controller consisted of several parts:
 
 ## The serial loader
 
-Serial loader is a new Zephyr shell command that allows users to easily load arbitrary data into the device memory.
+The serial loader is a new Zephyr shell command that allows users to easily load arbitrary data into the device memory.
 In this case it is used to load bitstream files, which can then be used in combination with the new ``fpga`` command to reprogram the FPGA chip.
 
 ## Usage
-The FPGA subsystem for Zephyr is in the process of mainlining, for now use our fork of Zephyr.
-You can find the fork containing all the relevant changes [here](https://github.com/antmicro/zephyr/tree/quickfeather-fpga-loader).
+The FPGA subsystem for [QuickLogic QuickFeather board](https://github.com/QuickLogic-Corp/quick-feather-dev-board) is already mainlined.
+In case of subsystem for Xilinx US+ FPGA (using [Antmicro's Mercury XU port](https://github.com/zephyrproject-rtos/zephyr/tree/main/boards/arm/mercury_xu)), it is still in the process of mainlining, for now use our fork of Zephyr.
+You can find the fork containing all the relevant changes [here](https://github.com/antmicro/zephyr/tree/zynqmp-fpga-controller-with-sample).
 
-# Example 1: programming the FPGA from C code
+# Example 1: programming the FPGA from C code (QuickFeather)
 This example demonstrates how to use the FPGA driver API.
 The described sample works with the [QuickLogic QuickFeather board](https://github.com/QuickLogic-Corp/quick-feather-dev-board).
-
-## Requirements
-* Zephyr RTOS
-* [QuickLogic QuickFeather board](https://github.com/QuickLogic-Corp/quick-feather-dev-board)
 
 ## Cloning the repository and building
 
 Please refer to Zephyr's official [getting started guide](https://docs.zephyrproject.org/latest/getting_started/index.html) for detailed setup instructions.
 
-Assuming the SDK and ``west`` are set up correctly, run the following commands to get the correct sources:
-```
-mkdir zephyrproject
-git clone --single-branch --branch quickfeather-fpga-loader https://github.com/antmicro/zephyr zephyrproject/zephyr
-cd zephyrproject/zephyr
-west init -l
-cd ..
-west update
-```
-
-Then, build the sample for the QuickLogic QuickFeather board:
+Then, build the sample for the `quick_feather` board:
 
 ```bash
 cd zephyr
-west build -b quick_feather samples/drivers/fpga/fpga_loader
+west build -b quick_feather samples/drivers/fpga/fpga_loader/quickfeather/
 ```
 
 ## Running
@@ -70,17 +57,48 @@ Once the board is programmed, the LED should alternately flash red and green.
 Note that the blinking is not controlled by software. There are two bistreams: one lights up the red LED, the other one lights up the green LED.
 One bitstream replaces the other in a continuous loop to demonstrate dynamic FPGA reprogramming from Zephyr.
 
-![Bitstream reprogramming demonstration](https://user-images.githubusercontent.com/8438531/119640404-dcedda00-be18-11eb-8a16-49004a82d76f.gif)
+![Bitstream reprogramming demonstration quick_feather](https://user-images.githubusercontent.com/8438531/119640404-dcedda00-be18-11eb-8a16-49004a82d76f.gif)
 
-# Example 2: programming the FPGA using the Zephyr shell
+# Example 2: programming the FPGA from C code (Mercury XU)
+This example demonstrates how to use the FPGA driver API.
+The described sample works with the [Antmicro's Mercury XU port](https://github.com/zephyrproject-rtos/zephyr/tree/main/boards/arm/mercury_xu)
+
+
+
+## Initialization
+
+Please refer to Zephyr's official [getting started guide](https://docs.zephyrproject.org/latest/getting_started/index.html) for detailed setup instructions.
+
+The first step is to initialize the workspace folder (``workspace``) where
+the app and all Zephyr modules will be cloned. You can do
+that by running:
+```
+west init -m https://github.com/antmicro/zephyr-fpga-controller-examples --mr master workspace
+cd workspace
+west update
+```
+
+Then, build the sample for the `mercury_xu` board:
+
+```bash
+cd zephyr-fpga-controller-examples
+west build -b mercury_xu app/
+```
+
+## Running
+See [Zephyr RTOS and Cortex-R5 on Zynq UltraScale+](https://antmicro.com/blog/2019/09/zephyr-cortex-r5-on-ultrascale/) for instructions on how to load an image to the board.
+
+## Expected behavior
+Once the board is programmed, the LED should blink.
+Note that the blinking is not controlled by software. There are two bitstreams: one blinks slower than the other one.
+One bitstream replaces the other in a continuous loop to demonstrate dynamic FPGA reprogramming from Zephyr.
+
+![Bitstream reprogramming demonstration mercury_xu](https://user-images.githubusercontent.com/56843331/163998244-91637928-b518-4e16-89cc-08bbfd5d51fe.gif)
+
+# Example 3: programming the FPGA using the Zephyr shell
 
 This sample demonstrates how to use the FPGA driver API along with the Serial loader subsystem in Zephyr Shell.
-Currently, the sample works with [Quicklogic Quickfeather board](https://github.com/QuickLogic-Corp/quick-feather-dev-board).
-
-## Requirements
-
-* Zephyr RTOS with shell subsystem enabled
-* [QuickLogic QuickFeather board](https://github.com/QuickLogic-Corp/quick-feather-dev-board)
+Currently, the sample works with the [QuickLogic QuickFeather board](https://github.com/QuickLogic-Corp/quick-feather-dev-board).
 
 ## Cloning the repository and building
 
@@ -94,10 +112,10 @@ west build -b quick_feather samples/drivers/fpga/fpga_loader_shell
 See [QuickFeather programming and debugging](https://docs.zephyrproject.org/latest/boards/arm/quick_feather/doc/index.html#programming-and-debugging) for instructions on how to load an image to the board.
 
 ## Running
+
 After connecting to the UART console you should see the following output:
 
 ```bash
-*** Booting Zephyr OS build v2.5.0-rc1-125-g25a1c4394db9  ***
 Address of bitstream (red): 0xADDR
 Address of bitstream (green): 0xADDR
 Size of bitstream (red): 75960
@@ -133,7 +151,7 @@ You can either type it directly from the console or send it from the host PC (re
 ```bash
 xxd -p data > /dev/ttyX
 ```
-(It is important to use plain-style hex dump)
+(It is important to use a plain-style hex dump)
 Once the data is transferred, use `ctrl+d` to quit the loader.
 It will print the sum of the read bytes and return to the shell:
 ```bash
